@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "919597937899",
+    "project_id": "somaster-af5d3",
+    "storage_bucket": "somaster-af5d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:919597937899:android:0616cf08c19b0d87307aae",
+        "android_client_info": {
+          "package_name": "com.example.master"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "919597937899-93n8hbd1d0fmbbk06aa3u6rbe5hd3qp5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJDX04uTgm4qOkArasBCWnopQVap20QEo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "919597937899-93n8hbd1d0fmbbk06aa3u6rbe5hd3qp5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
