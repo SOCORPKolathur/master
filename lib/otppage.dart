@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:master/Screens/Home.dart';
 import 'package:pinput/pinput.dart';
 
@@ -28,8 +29,12 @@ class _otppageState extends State<otppage> {
       body:  Center(
         child: Column(
           children: [
+            Text("Enter OTP",style: GoogleFonts.deliusSwashCaps(
+                fontSize: 48,
+                fontWeight: FontWeight.w600,
+                color: Color(0xff000000)
+            ),),
             Container(
-
               margin: EdgeInsets.all(15),
               child: Pinput(
                 defaultPinTheme: PinTheme(width: 56,
@@ -64,7 +69,7 @@ class _otppageState extends State<otppage> {
                             {
                               "phone": widget.phonenumber
                             });
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Home()));
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>Home()));
                       }
 
 

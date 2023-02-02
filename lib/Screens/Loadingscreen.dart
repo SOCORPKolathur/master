@@ -1,5 +1,5 @@
 
-
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,7 +19,64 @@ class _loadingState extends State<loading> {
   Widget build(BuildContext context) {
     double _width =MediaQuery.of(context).size.width;
     double _height =MediaQuery.of(context).size.height;
-    return Scaffold(
+    return kIsWeb?Scaffold(
+      body: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Container(
+            child: SvgPicture.asset('assets/learnman.svg'),
+          ),
+          Container(
+            width: 300,
+            child:   Column(
+
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 250),
+                  child: Text('Watch Videos to Learn',style: GoogleFonts.openSans(
+                      color: Color(0xff222B45),
+                      fontWeight: FontWeight.w500,
+                      fontSize: 25
+                  ),),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text('We have amazing videos that can help you understanding the concepts much easily',style: GoogleFonts.openSans(
+                    color: Color(0xff222B45),
+                    fontWeight: FontWeight.w500,
+                    fontSize: 15
+                ),),
+                SizedBox(
+                height: 40,
+                ),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>login()));},
+                  child: Container(
+                    width: 120,
+                    height: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: Color(0xffFADA5E)
+                    ),
+                    child:  Center(
+                      child: Text('Next',style: GoogleFonts.openSans(
+                          color: Color(0xffFFFFFF),
+                          fontWeight: FontWeight.w500,
+                          fontSize:18
+                      ),),
+                    ),
+                  ),
+                )
+              ],
+            )
+          )
+        ],
+      ),
+    ):
+    Scaffold(
       body:OnBoard(
         onBoardData: onBoardData,
 
@@ -63,15 +120,15 @@ class _loadingState extends State<loading> {
                   height: _height/15.6654,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    color: Color(0xffFADA5E)
+                      borderRadius: BorderRadius.circular(30),
+                      color: Color(0xffFADA5E)
                   ),
                   child: Text(
                     state.isLastPage ? "Done" : "Next",
                     style:  TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: _width/21.8177
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: _width/21.8177
                     ),
                   ),
                 ),

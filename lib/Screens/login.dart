@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:master/Screens/Home.dart';
 import 'package:master/otppage.dart';
-
+import 'package:flutter/foundation.dart' show kIsWeb;
 class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
 
@@ -31,7 +31,222 @@ class _loginState extends State<login> {
     print(_width);
     print(_height);
     return SafeArea(
-      child: Scaffold(
+      child: kIsWeb?Scaffold(
+        body:
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 100,
+            ),
+            Center(
+              child: Container(
+                height: 105,
+                width: 200,
+
+                child: Padding(
+                  padding:  EdgeInsets.only(left:  0,top: 0,),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+
+                          Padding(
+                            padding:  EdgeInsets.only(top:0 ),
+                            child: Text("SO ",style: GoogleFonts.deliusSwashCaps(
+                                fontSize: 48,
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xff000000)
+                            ),),
+                          ),
+                          Padding(
+                            padding:  EdgeInsets.only(top:0 ),
+                            child: Text("Master ",style: GoogleFonts.deliusSwashCaps(
+                                fontSize: 30,
+                                fontWeight: FontWeight.w700,
+                                color: Color(0xff000000)
+                            ),),
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding:  EdgeInsets.only(left:0),
+                        child: Container(
+                          child:Text("Classes",style: GoogleFonts.deliusSwashCaps(
+                              fontSize: 30,
+                              fontWeight: FontWeight.w700,
+                              color: Color(0xff000000)
+                          ),),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+              ),
+            ),
+
+            Padding(
+              padding: EdgeInsets.only(top: _height/15.6654,left:550),
+              child: Text("Enter Phone Number",style: GoogleFonts.roboto(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w600,
+                  color: Color(0xff222B45)
+
+              ),),
+            ),
+            Padding(
+              padding:  EdgeInsets.only(top: _height/31.3308,left:550),
+              child: GestureDetector(
+                onTap: (){
+                  showCountryPicker(context: context,
+                      showPhoneCode: true,
+                      onSelect: (Country country){
+                        setState(() {
+                          countryname= '${country.displayNameNoCountryCode}';
+                          flag= '${country.flagEmoji}';
+                          code='${country.phoneCode}';
+
+
+
+                        });
+
+                        print('Select country: ${nam}');
+                        print('${country.phoneCode}');
+                        print(code);
+
+                      },
+                      countryListTheme: CountryListThemeData(
+
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(40.0),
+                          topRight: Radius.circular(40.0),
+                        ),
+                        inputDecoration: InputDecoration(
+                          labelText: 'Search',
+                          hintText: 'Start typing to search',
+                          prefixIcon: const Icon(Icons.search),
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: const Color(0xFF8C98A8).withOpacity(0.2),
+                            ),
+                          ),
+                        ),
+                      )
+
+                  );
+
+                },
+                child: Container(
+
+                  width: 350,
+                  height: 35,
+                  alignment: Alignment.centerLeft,
+                  decoration: BoxDecoration(
+                      border: Border.all(
+                          color: Colors.black12
+                      )
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Padding(
+                            padding:  EdgeInsets.only(left: 5),
+                            child: Container(
+                              width:25 ,
+                              height:25 ,
+                              child: Text(flag,style: GoogleFonts.openSans(
+                                fontSize: 20,
+
+                              ),),
+                            ),
+                          ),
+                          SizedBox(width: _width/39.272,),
+                          Padding(
+                            padding: EdgeInsets.only(),
+                            child: Text(countryname,style: GoogleFonts.openSans(
+                                fontSize: 15,
+
+                                color: Color(0xff000000)
+                            ),),
+                          ),
+                        ],
+                      ),
+
+                      SizedBox(
+                          width: 0
+                      ),
+                      Icon(Icons.arrow_forward_ios_outlined)
+
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(width: _width/7.8544,
+              height: _height/78.327,),
+            Padding(
+              padding: const EdgeInsets.only(left:550),
+              child: Container(
+                width: 350,
+                height: 35,
+                child: TextField(
+                  controller: phonenumber,
+                  decoration: InputDecoration(
+                      prefix: Text('+${code}'),
+                      border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              color: Colors.black12
+                          )
+                      )
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left:550,top: 5),
+              child: Text('We’ll Send you a code by SMS to confirm your phone number.',style: GoogleFonts.openSans(
+                  fontSize: 12,
+                  color: Color(0xff000000)
+              ),),
+            ),
+            Padding(
+              padding:  EdgeInsets.only(top: _height/15.6654,left:600),
+              child: GestureDetector(
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>otppage(
+                      phonenumber.text
+                  )));
+
+                },
+                child: Container(
+                  width: 200,
+                  height: 50,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Color(0xffFADA5E)
+                  ),
+                  child: Text(
+                    'Continue',
+                    style:  GoogleFonts.openSans(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+          ],
+        ),
+
+      ):
+      Scaffold(
         body:
         Column(
 

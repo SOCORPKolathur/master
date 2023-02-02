@@ -1,18 +1,31 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:master/Screens/Home.dart';
 
+import 'package:master/Screens/Welcome.dart';
 import 'package:master/Screens/demo.dart';
-
 import 'package:master/Screens/login.dart';
-import 'package:master/Screens/viewpage.dart';
+
+
 
 
  Future <void> main() async{
-  WidgetsFlutterBinding.ensureInitialized();
-   await Firebase.initializeApp();
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp(
+      name: 'flutter',
+      options:FirebaseOptions(
+          apiKey: "AIzaSyAdOs080q_fMZ3sc5Pgj-i4RMhYO051s2M",
+          authDomain: "somaster-af5d3.firebaseapp.com",
+          projectId: "somaster-af5d3",
+          storageBucket: "somaster-af5d3.appspot.com",
+          messagingSenderId: "919597937899",
+          appId: "1:919597937899:web:11c99060b098a991307aae",
+          measurementId: "G-FVDN9593H1"
+      )
+    );
   runApp(const MyApp());
 }
 
@@ -53,12 +66,13 @@ class MyApp extends StatelessWidget {
             languageCode: 'zh',
             scriptCode: 'Hant'), // Generic traditional Chinese 'zh_Hant'
       ],
-      localizationsDelegates: [
+      localizationsDelegates:[
         CountryLocalizations.delegate,
-
       ],
-      home: FirebaseAuth.instance.currentUser==null? login():Home(),
+      home: demo(),
+      // home: FirebaseAuth.instance.currentUser==null?welcome():Home(),
     );
   }
 }
+
 
